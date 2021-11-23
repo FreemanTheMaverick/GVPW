@@ -4,10 +4,8 @@
 
 [QUANTUM-ESPRESSO's PWscf](http://www.quantum-espresso.org/) is an open-source package for computional physics and chemistry. Contrary to its significance, it lacked tools for building models and visualization, forcing users to sort to various softwares, including [Material Studio](https://www.3ds.com/products-services/biovia/products/molecular-modeling-simulation/biovia-materials-studio/), [BURAI](https://nisihara.wixsite.com/burai) and [XCrySDen](http://www.xcrysden.org/), for any single task as simple as geometry optimization. On the other hand, [GaussView](http://gaussian.com/), one of the most versatile modeling and visualization tools in quantum chemistry, does not support PWscf at all by itself.
 
-[GVPW](https://github.com/FreemanTheMaverick/GVPW) is a batch of scripts that serves to build a bridge between PWscf and GaussView. They convert input and output files between Gaussian format and PWscf format. With ```GVPW```, users will enjoy using GaussView to build complicated periodic models for PWscf calculation and watch the optimization processes of ```relax``` and ```vc-relax``` tasks.
+[GVPW](https://github.com/FreemanTheMaverick/GVPW) is a batch of scripts that serves to build a bridge between PWscf and GaussView. They convert input and output files between Gaussian format and PWscf format. With ```GVPW```, users will enjoy using GaussView to build complicated periodic models for PWscf calculation and watch the optimization processes of ```relax``` and ```vc-relax``` tasks. GaussView is especially useful in building "adsorbent-on-slab" model even if the adsorbent molecule is large and complex.
 
-
-How to get ```GVPW``` to work.
 
 ## Installation
 
