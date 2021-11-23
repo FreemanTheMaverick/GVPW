@@ -4,29 +4,58 @@
 
 [QUANTUM-ESPRESSO's PWscf](http://www.quantum-espresso.org/) is an open-source package for computional physics and chemistry. Contrary to its significance, it lacked tools for building models and visualization, forcing users to sort to various softwares, including [Material Studio](https://www.3ds.com/products-services/biovia/products/molecular-modeling-simulation/biovia-materials-studio/), [BURAI](https://nisihara.wixsite.com/burai) and [XCrySDen](http://www.xcrysden.org/), for any single task as simple as geometry optimization. On the other hand, [GaussView](http://gaussian.com/), one of the most versatile modeling and visualization tool in quantum chemistry, does not support PWscf at all.
 
-[GVPW](https://github.com/FreemanTheMaverick/GVPW) is a batch of scripts that serves to build a bridge between PWscf and GaussView. They convert input and output files between Gaussian format and PWscf format. With GVPW, users will enjoy using GaussView to build complicated periodic models for PWscf calculation and watch the optimization processes of 'relax' and 'vc-relax' tasks.
+[GVPW](https://github.com/FreemanTheMaverick/GVPW) is a batch of scripts that serves to build a bridge between PWscf and GaussView. They convert input and output files between Gaussian format and PWscf format. With ```GVPW```, users will enjoy using GaussView to build complicated periodic models for PWscf calculation and watch the optimization processes of ```relax``` and ```vc-relax``` tasks.
 
-## Users' Guide
 
 How to get ```GVPW``` to work.
 
-### Installation
+## Installation
 
-Download ```GVPW``` from ```GitHub```.
++ Download ```GVPW``` from GitHub.
 ```
 git clone https://github.com/FreemanTheMaverick/GVPW.git
 ```
-Set environment variables.
++ Set environment variables in ```~/.bashrc```.
 ```
 alias gjf2pwin='bash [Installation_root]/GVPW/gjf2pwin.sh'
 alias pwin2gjf='bash [Installation_root]/GVPW/pwin2gjf.sh'
 alias pwout2gauout='bash [Installation_root]/GVPW/pwout2gauout.sh'
 ```
++ Source the environment variables.
+```
+source ~/.bashrc
+```
 
-### Usage
+## Usage
 
-#### From ```Gaussian``` input to ```PWscf``` input
+### From Gaussian input to PWscf input
+You need a Gaussian input ```filename.gjf``` with three lattice vectors ```Tv``` (case-sensitive) and a template file ```template.in``` in PWscf input format. The following command generates a new ```filename.in``` based on the molecular geometry and lattice constants provided by ```filename.gjf``` and other settings (cutoff, pseudopotentials, etc.) provided by ```template.in```.
+```
+gjf2pwin filename.gjf template.in
+```
+After some possible revision of the input file, ```filename.in``` is ready to be fed to PWscf.
 
+### From PWscf input to Gaussian input
+You need a PWscf input ```filename.in```. The following command generates a new ```filename.gjf``` based on the molecular geometry and lattice constants provided by ```filename.in```.
+```
+pwin2gjf filename.in
+```
+```filename.gjf``` can be viewed and modified by GaussView.
+
+### From PWscf output to Gaussian output
+You need a PWscf output ```filename.out``` of ```relax``` and ```vc-relax```, not necessarily completed normally. The following command generates an optimization output ```filename.log``` in Gaussian format.
+```
+pwout2gauout filename.out
+```
+You can watch every frame of the optimization process and its energy change in GaussView.
+
+## Precautions
++ Do not specify lattice information (```ibrav```, ```celldm```, etc.) in ```&SYSTEM``` in ```filename.in``` or ```template.in``` since all related information is generated as ```CELL_PARAMETERS``` section.
++ The molecular geometry and lattice vectors in every input file involved should be in unit of Angstrom, instead of alat or Bohr. You can set it by writing ```ATOMIC_POSITIONS angstrom``` and ```CELL_PARAMETERS angstrom``` instead of merely ```ATOMIC_POSITIONS``` and ```CELL_PARAMETERS```.
++ The energy of ```filename.log``` shown in GaussView should be in unit Rydberg, instead of Hartree.
+
+## Compatibility
+```GVPW``` was tested on QUANTUM-ESPRESSO_6.8 and GaussView_6.0.16 and passed.
 
 
 
