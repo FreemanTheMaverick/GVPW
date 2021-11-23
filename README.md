@@ -51,6 +51,9 @@ You can watch every frame of the optimization process and its energy change in G
 + Do not specify lattice information (```ibrav```, ```celldm```, etc.) in ```&SYSTEM``` in ```filename.in``` or ```template.in``` since all related information is generated as ```CELL_PARAMETERS``` section.
 + The molecular geometry and lattice vectors in every input file involved should be in unit of Angstrom, instead of alat or Bohr. You can set it by writing ```ATOMIC_POSITIONS angstrom``` and ```CELL_PARAMETERS angstrom``` instead of merely ```ATOMIC_POSITIONS``` and ```CELL_PARAMETERS```.
 + The energy of ```filename.log``` shown in GaussView should be in unit Rydberg, instead of Hartree.
++ ```pwout2gauout.sh``` could be slow depending on how many frames there are in the PWscf output file. Just be patient.
++ Temporary files ```init_tmp_atom```, ```init_tmp_lat```, ```tmp_atom``` and ```tmp_lat``` will be generated and removed as the scripts run. Be careful if you have files with the same names in the working directory.
++ The script ```pwout2gjf.sh``` is deprecated. It generates ```filename.gjf``` from the last frame of ```filename.out```. Its function is already included in ```pwout2gauout.sh```.
 
 ## Compatibility
 ```GVPW``` was tested on QUANTUM-ESPRESSO_6.8 and GaussView_6.0.16 and passed.
