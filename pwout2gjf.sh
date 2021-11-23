@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Deprecated and no longer needed.
+
 pwout=$1
 dos2unix $pwout 1 > /dev/null 2>&1
 title=${pwout%.*}
