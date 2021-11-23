@@ -6,7 +6,7 @@ title=${pwout%.*}
 log=$title".log"
 title=${title##*/}
 
-echo "! Generated with GVPW downloaded from http://bbs.keinsci.com/thread-20166-1-1.html" > $log
+echo "! Generated with GVPW downloaded from https://github.com/FreemanTheMaverick/GVPW.git" > $log
 echo 'GradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGradGrad' >> $log
 echo ' Number of steps in this run=     2333 maximum allowed number of steps=    2333.' >> $log
 

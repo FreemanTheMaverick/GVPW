@@ -9,7 +9,7 @@ title=${title##*/}
 echo "# pbepbe/3-21g/auto" > $gjf
 echo "" >> $gjf
 echo "${title}" >> $gjf
-echo "Generated with pwin2gjf.sh downloaded from http://bbs.keinsci.com/thread-20166-1-1.html" >> $gjf
+echo "Generated with GVPW downloaded from https://github.com/FreemanTheMaverick/GVPW.git" >> $gjf
 echo "" >> $gjf
 echo "0 1" >> $gjf
 

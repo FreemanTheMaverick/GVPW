@@ -43,8 +43,8 @@ settings=$2
 dos2unix $settings 1 > /dev/null 2>&1
 nat=`grep 'nat' $settings | awk '{print $3}'` # Number of atoms found at the third entry of the line containing 'nat'.
 nline=`awk 'END{print NR}' $settings` # Number of lines contained in $2.
-echo '! Generated with gjf2pwin.sh downloaded from' > $pwin
-echo '! http://bbs.keinsci.com/thread-20166-1-1.html' >> $pwin
+echo '! Generated with GVPW downloaded from' > $pwin
+echo '! https://github.com/FreemanTheMaverick/GVPW.git' >> $pwin
 j=1
 while [ $j -le $nline ];do
 	thisline=`cat $settings | sed -n $j"P"`
