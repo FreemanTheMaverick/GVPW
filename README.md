@@ -48,7 +48,7 @@ pwout2gauout filename.out
 You can watch every frame of the optimization process and its energy change in GaussView.
 
 ## Precautions
-+ Do not specify lattice information (```ibrav```, ```celldm```, etc.) in ```&SYSTEM``` in ```filename.in``` or ```template.in``` since all related information is generated as ```CELL_PARAMETERS``` section.
++ Set ```ibrav``` to 0 in ```filename.in``` or ```template.in```, which requests that lattice vectors be read from ```CELL_PARAMETERS``` section.
 + The molecular geometry and lattice vectors in every input file involved should be in unit of Angstrom, instead of alat or Bohr. You can set it by writing ```ATOMIC_POSITIONS angstrom``` and ```CELL_PARAMETERS angstrom``` instead of merely ```ATOMIC_POSITIONS``` and ```CELL_PARAMETERS```.
 + The energy of ```filename.log``` shown in GaussView should be in unit Rydberg, instead of Hartree.
 + ```pwout2gauout.sh``` could be slow depending on how many frames there are in the PWscf output file. Just be patient.
