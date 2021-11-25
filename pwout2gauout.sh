@@ -16,6 +16,12 @@ alatline=`grep 'lattice parameter (alat)' $pwout` # Similar to above.
 alat=`echo $alatline | awk '{print $5}'`
 alat=`echo "$alat * 0.529177" | bc` # Converting unit of alat from Bohr to Angstrom.
 nline=`awk 'END{print NR}' $pwout`
+hybrid=`grep EXX $pwout` # Checking if the calculation uses a hybrid functional. If it does, 'EXX' will show up in pwout.
+if [[ -z $hybrid ]];then # If 'EXX' does not exist.
+	energyindicator='!' # Energy of each frame is given after one exclamation mark if the calculation uses a pure functional.
+else # If 'EXX' does exist.
+	energyindicator='!!' # Energy of each frame is given after double exclamation mark if the calculation uses a hybrid functional. 
+fi
 
 nframe=0 # Number of frames.
 BREAK=0 # Whether to stop searching for new frames.
@@ -126,7 +132,7 @@ while [[ $i -le $nline ]];do
 		fi
 		rm tmp_atom
 
-	elif [[ $thislinecut == "!" ]];then
+	elif [[ $thislinecut == $energyindicator ]];then
 		let nframe++ # Number of frame increases.
 		thisenergy=`echo $thisline | awk '{print $5}'`
 		echo ' SCF Done:  E(???) =  '$thisenergy'     A.U. after   2333 cycles' >> $log
